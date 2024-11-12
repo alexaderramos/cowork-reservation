@@ -2,11 +2,10 @@
 
 namespace App\Services;
 
-use Carbon\Carbon;
-use App\Models\User;
-use App\Models\Reservation;
 use App\Enums\User\RoleEnum;
-use Illuminate\Support\Collection;
+use App\Models\Reservation;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ReservationService
