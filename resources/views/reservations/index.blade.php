@@ -4,11 +4,11 @@
     <div class="container">
         <h1>Reservas</h1>
 
-        @if(auth()->user()->role === 'client')
+        @client
             <a href="{{ route('reservations.create') }}" class="btn btn-primary">Hacer una Reserva</a>
-        @endif
+        @endclient
 
-        @if(auth()->user()->role === 'admin')
+        @admin
             <form action="{{ route('reservations.index') }}" method="GET" class="mb-4">
                 <div class="form-group">
                     <label for="room_id">Filtrar por Sala</label>
@@ -22,7 +22,7 @@
                     </select>
                 </div>
             </form>
-        @endif
+        @endadmin
 
         <table class="table mt-4">
             <thead>
@@ -32,9 +32,9 @@
                     <th>Fecha de Inicio</th>
                     <th>Fecha de Fin</th>
                     <th>Estado</th>
-                    @if(auth()->user()->role === 'admin')
+                    @admin
                         <th>Acciones</th>
-                    @endif
+                    @endadmin
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +45,7 @@
                         <td>@datetime($reservation->start_time)</td>
                         <td>@datetime($reservation->end_time)</td>
                         <td>{{ $reservation->status }}</td>
-                        @if(auth()->user()->role === 'admin')
+                        @admin
                             <td>
                                 <form action="{{ route('reservations.updateStatus', $reservation->id) }}" method="POST" style="display:inline-block;">
                                     @csrf
@@ -58,7 +58,7 @@
                                     </select>
                                 </form>
                             </td>
-                        @endif
+                        @endadmin
                     </tr>
                 @endforeach
             </tbody>

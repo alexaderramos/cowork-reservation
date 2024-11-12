@@ -29,15 +29,18 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+                     @auth
+                     <ul class="navbar-nav me-auto">
+                        @admin
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('rooms*') ? 'active' : '' }}" href="{{ route('rooms.index') }}">Rooms</a>
                         </li>
+                        @endadmin
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('reservations*') ? 'active' : '' }}" href="{{ route('reservations.index') }}">Reservations</a>
                         </li>
                     </ul>
-
+                     @endauth
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->

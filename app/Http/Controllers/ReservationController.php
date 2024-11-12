@@ -20,6 +20,7 @@ class ReservationController extends Controller
         ReservationService $reservationService
     ) {
         $this->reservationService = $reservationService;
+        $this->middleware('isClient')->only(['create', 'store']);
     }
 
     /**
