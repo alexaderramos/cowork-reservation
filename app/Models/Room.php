@@ -11,6 +11,14 @@ class Room extends Model
     use HasFactory;
 
     /**
+     * The attributes that are mass assignable.
+     */
+    protected $fillable = [
+        'name',
+        'description',
+    ];
+
+    /**
      * Reservations relationship.
      */
     public function reservations(): HasMany
