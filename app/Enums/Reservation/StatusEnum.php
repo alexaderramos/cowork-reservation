@@ -2,8 +2,12 @@
 
 namespace App\Enums\Reservation;
 
+use App\Traits\EnumHelper;
+
 enum StatusEnum: string
 {
+    use EnumHelper;
+
     case PENDING = 'Pending';
     case ACCEPTED = 'Accepted';
     case REJECTED = 'Rejected';

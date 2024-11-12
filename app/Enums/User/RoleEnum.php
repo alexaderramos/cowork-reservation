@@ -2,13 +2,12 @@
 
 namespace App\Enums\User;
 
+use App\Traits\EnumHelper;
+
 enum RoleEnum: string
 {
+    use EnumHelper;
+
     case CLIENT = 'client';
     case ADMIN = 'admin';
-
-    public static function values(): array
-    {
-        return array_column(self::cases(), 'value');
-    }
 }

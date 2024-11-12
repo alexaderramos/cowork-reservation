@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,4 +26,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware('auth')->group(function () {
     Route::resource('rooms', RoomController::class);
+    Route::resource('reservations', ReservationController::class);
+    Route::post('reservations/{reservation}/update-status', [ReservationController::class, 'updateStatus'])->name('reservations.updateStatus');
 });

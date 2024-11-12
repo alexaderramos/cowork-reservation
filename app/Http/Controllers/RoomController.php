@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Room\RoomCreateRequest;
+use App\Http\Requests\Room\RoomStoreRequest;
 use App\Http\Requests\Room\RoomUpdateRequest;
 use App\Models\Room;
 use Illuminate\Http\RedirectResponse;
@@ -31,7 +31,7 @@ class RoomController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(RoomCreateRequest $request): RedirectResponse
+    public function store(RoomStoreRequest $request): RedirectResponse
     {
         $room = Room::create($request->validated());
 

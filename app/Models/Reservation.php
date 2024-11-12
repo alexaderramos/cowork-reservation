@@ -11,6 +11,25 @@ class Reservation extends Model
     use HasFactory;
 
     /**
+     * The attributes that are mass assignable.
+     */
+    protected $fillable = [
+        'room_id',
+        'user_id',
+        'start_time',
+        'end_time',
+        'status',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     */
+    protected $casts = [
+        'start_time' => 'datetime',
+        'end_time' => 'datetime',
+    ];
+
+    /**
      * Room relationship.
      */
     public function room(): BelongsTo

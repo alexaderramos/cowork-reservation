@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Room;
+namespace App\Http\Requests\Reservation;
 
+use App\Enums\Reservation\StatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class RoomCreateRequest extends FormRequest
+class ReservationChangeStatusRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,8 +22,11 @@ class RoomCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255', 'unique:rooms,name'],
-            'description' => ['nullable', 'string'],
+            'status' => [
+                'required',
+                'string',
+                Rule::in(StatusEnum::values()),
+            ],
         ];
     }
 }
