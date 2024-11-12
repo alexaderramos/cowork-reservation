@@ -2,26 +2,27 @@
 
 namespace App\Services;
 
-use App\Enums\User\RoleEnum;
-use App\Models\Reservation;
-use App\Models\User;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Reservation;
+use App\Enums\User\RoleEnum;
 use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ReservationService
 {
     /**
      * Get reservations by user role.
      */
-    public function getReservations($roomId, User $user): Collection
+    public function getReservations($roomId, User $user): LengthAwarePaginator
     {
         if ($user->role === RoleEnum::ADMIN->value) {
             return Reservation::with(['room', 'user'])->when($roomId, function ($query) use ($roomId) {
                 return $query->where('room_id', $roomId);
-            })->get();
+            })->paginate(10);
         }
 
-        return Reservation::with(['room', 'user'])->where('user_id', $user->id)->get();
+        return Reservation::with(['room', 'user'])->where('user_id', $user->id)->paginate(10);
     }
 
     /**

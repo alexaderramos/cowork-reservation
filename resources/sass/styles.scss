@@ -1,0 +1,22 @@
+/* Personalización para la sección de héroe */
+header {
+    background: linear-gradient(to right, #007bff, #0056b3);
+    min-height: calc(50vh - 100px);
+}
+
+header h1 {
+    font-weight: 700;
+}
+
+.icon {
+    color: #007bff;
+}
+
+.card-body {
+    background-color: #fff;
+}
+
+.card-room:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}

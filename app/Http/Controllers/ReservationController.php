@@ -52,12 +52,12 @@ class ReservationController extends Controller
         $data = $request->validated();
 
         if (! $this->reservationService->checkAvailability($data['room_id'], $data['start_time'])) {
-            return redirect()->route('reservations.create')->with('error', 'La sala no está disponible en el horario seleccionado.');
+            return redirect()->route('reservations.create')->with('error', 'The room is not available at the selected time.');
         }
 
         $this->reservationService->storeReservation($data);
 
-        return redirect()->route('reservations.index')->with('success', 'Reserva creada correctamente.');
+        return redirect()->route('reservations.index')->with('success', 'Reservation created successfully.');
     }
 
     /**
@@ -68,6 +68,6 @@ class ReservationController extends Controller
         $reservation->status = $request->validated()['status'];
         $reservation->save();
 
-        return redirect()->route('reservations.index')->with('success', 'Estado de la reserva actualizado.');
+        return redirect()->route('reservations.index')->with('success', 'Reservation status updated.');
     }
 }
