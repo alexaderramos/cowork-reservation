@@ -16,12 +16,12 @@ class ReservationService
     public function getReservations($roomId, User $user): Collection
     {
         if ($user->role === RoleEnum::ADMIN->value) {
-            return Reservation::when($roomId, function ($query) use ($roomId) {
+            return Reservation::with(['room', 'user'])->when($roomId, function ($query) use ($roomId) {
                 return $query->where('room_id', $roomId);
             })->get();
         }
 
-        return Reservation::where('user_id', $user->id)->get();
+        return Reservation::with(['room', 'user'])->where('user_id', $user->id)->get();
     }
 
     /**
